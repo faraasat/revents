@@ -4,11 +4,17 @@ import "semantic-ui-css/semantic.min.css";
 import "./app/layouts/styles.css";
 import App from "./app/layouts/App";
 import * as serviceWorker from "./serviceWorker";
+import { BrowserRouter } from "react-router-dom";
 
 // For Hot Module which adds the change without refreshing or flickering of the page and we use it only in development
 const rootEl = document.getElementById("root");
 let render = () => {
-  ReactDOM.render(<App />, rootEl);
+  ReactDOM.render(
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>,
+    rootEl
+  );
 };
 if (module.hot) {
   // module is from webpack and it is available after compilation

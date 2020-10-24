@@ -1,17 +1,35 @@
-import React, { useState } from "react";
+import React from "react";
+import { Route } from "react-router-dom";
 import { Container } from "semantic-ui-react";
 import EventDashboard from "../../features/events/eventDashboard/EventDashboard";
-import NavBar from "../../features/nav/navBar";
+import EventDetailedPage from "../../features/events/eventDetailed/EventDetailedPage";
+import EventForm from "../../features/events/eventForm/EventForm";
+import HomePage from "../../features/home/HomePage";
+import NavBar from "../../features/nav/NavBar";
 
 export default function App() {
-  const [formOpen, setFormOpen] = useState(false);
   return (
     /* Since we can only return one component so we have to wrap it in a div but in order to remove that uneccessary div we use <Fragment></Fragment> or <></> */
     <>
-      <NavBar setFormOpen={setFormOpen} />
-      <Container className="main">
-        <EventDashboard formOpen={formOpen} setFormOpen={setFormOpen} />
-      </Container>
+      <Route exact path="/" component={HomePage} />
+      {/* this says if we have / + something we will render it differently */}
+      <Route
+        path={"/(.+)"}
+        render={() => (
+          <>
+            <NavBar />
+            <Container className="main">
+              <Route exact path="/events" component={EventDashboard} />
+              <Route path="/event/:id" component={EventDetailedPage} />
+              {/* to open same component on different routes */}
+              <Route
+                path={["/createEvent", "manage/:id"]}
+                component={EventForm}
+              />
+            </Container>
+          </>
+        )}
+      />
     </>
   );
 }
