@@ -1,13 +1,16 @@
 import React from "react";
-import { Route } from "react-router-dom";
+import { Route, useLocation } from "react-router-dom";
 import { Container } from "semantic-ui-react";
 import EventDashboard from "../../features/events/eventDashboard/EventDashboard";
 import EventDetailedPage from "../../features/events/eventDetailed/EventDetailedPage";
 import EventForm from "../../features/events/eventForm/EventForm";
 import HomePage from "../../features/home/HomePage";
 import NavBar from "../../features/nav/NavBar";
+import Sandbox from "../../features/sandbox/sandbox";
 
 export default function App() {
+  const { key } = useLocation();
+
   return (
     /* Since we can only return one component so we have to wrap it in a div but in order to remove that uneccessary div we use <Fragment></Fragment> or <></> */
     <>
@@ -20,10 +23,12 @@ export default function App() {
             <NavBar />
             <Container className="main">
               <Route exact path="/events" component={EventDashboard} />
+              <Route exact path="/sandbox" component={Sandbox} />
               <Route path="/event/:id" component={EventDetailedPage} />
               {/* to open same component on different routes */}
               <Route
-                path={["/createEvent", "manage/:id"]}
+                key={key}
+                path={["/createEvent", "/manage/:id"]}
                 component={EventForm}
               />
             </Container>

@@ -5,14 +5,22 @@ import "./app/layouts/styles.css";
 import App from "./app/layouts/App";
 import * as serviceWorker from "./serviceWorker";
 import { BrowserRouter } from "react-router-dom";
+import { Provider } from "react-redux";
+import { ConfigureStore } from "./app/store/configureStore";
+import ScrollToTop from "./app/layouts/ScrollToTop";
+
+const store = ConfigureStore();
 
 // For Hot Module which adds the change without refreshing or flickering of the page and we use it only in development
 const rootEl = document.getElementById("root");
 let render = () => {
   ReactDOM.render(
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>,
+    <Provider store={store}>
+      <BrowserRouter>
+        <ScrollToTop />
+        <App />
+      </BrowserRouter>
+    </Provider>,
     rootEl
   );
 };
