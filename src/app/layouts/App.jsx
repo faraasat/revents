@@ -8,6 +8,7 @@ import HomePage from "../../features/home/HomePage";
 import NavBar from "../../features/nav/NavBar";
 import Sandbox from "../../features/sandbox/sandbox";
 import ModalManager from "../common/modals/ModalManager";
+import { ToastContainer } from "react-toastify";
 
 export default function App() {
   const { key } = useLocation();
@@ -21,6 +22,7 @@ export default function App() {
         path={"/(.+)"}
         render={() => (
           <>
+            <ToastContainer position="bottom-right" hideProgressBar />
             <ModalManager />
             <NavBar />
             <Container className="main">
