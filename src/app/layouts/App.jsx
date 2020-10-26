@@ -7,6 +7,7 @@ import EventForm from "../../features/events/eventForm/EventForm";
 import HomePage from "../../features/home/HomePage";
 import NavBar from "../../features/nav/NavBar";
 import Sandbox from "../../features/sandbox/sandbox";
+import ModalManager from "../common/modals/ModalManager";
 
 export default function App() {
   const { key } = useLocation();
@@ -20,6 +21,7 @@ export default function App() {
         path={"/(.+)"}
         render={() => (
           <>
+            <ModalManager />
             <NavBar />
             <Container className="main">
               <Route exact path="/events" component={EventDashboard} />
