@@ -9,6 +9,7 @@ import NavBar from "../../features/nav/NavBar";
 import Sandbox from "../../features/sandbox/sandbox";
 import ModalManager from "../common/modals/ModalManager";
 import { ToastContainer } from "react-toastify";
+import ErrorComponent from "../common/errors/ErrorComponent";
 
 export default function App() {
   const { key } = useLocation();
@@ -35,6 +36,7 @@ export default function App() {
                 path={["/createEvent", "/manage/:id"]}
                 component={EventForm}
               />
+              <Route path="/error" component={ErrorComponent} />
             </Container>
           </>
         )}

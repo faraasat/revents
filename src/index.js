@@ -10,10 +10,8 @@ import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import { ConfigureStore } from "./app/store/configureStore";
 import ScrollToTop from "./app/layouts/ScrollToTop";
-import { loadEvents } from "./features/events/eventActions";
 
 const store = ConfigureStore();
-store.dispatch(loadEvents());
 
 // For Hot Module which adds the change without refreshing or flickering of the page and we use it only in development
 const rootEl = document.getElementById("root");
