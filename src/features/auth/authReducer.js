@@ -15,7 +15,7 @@ export default function authReducer(state = initialState, { type, payload }) {
           email: payload.email,
           photoURL: payload.photoURL,
           uid: payload.uid,
-          providerId: payload.providerData[0].providerId,
+          poviderId: payload.providerData === undefined ? null : payload.providerData[0].providerId,
           displayName: payload.displayName,
         },
       };

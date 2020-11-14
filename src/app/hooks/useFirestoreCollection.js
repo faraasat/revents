@@ -7,7 +7,7 @@ import {
 } from "../async/asyncReducer";
 import { dataFromSnapshot } from "../firestore/firestoreService";
 
-export default function useFirestoreCollection({ query, data, dependencies }) {
+export default function useFirestoreCollection({ query, data, deps }) {
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -23,5 +23,5 @@ export default function useFirestoreCollection({ query, data, dependencies }) {
     return () => {
       unsubscribe();
     };
-  }, [dependencies]); //eslint-disable-line react-hooks/exhaustive-deps
+  }, deps); //eslint-disable-line react-hooks/exhaustive-deps
 }

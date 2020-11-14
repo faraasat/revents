@@ -36,7 +36,7 @@ export default function App() {
             <Container className="main">
               <Route exact path="/events" component={EventDashboard} />
               <Route exact path="/sandbox" component={Sandbox} />
-              <Route path="/event/:id" component={EventDetailedPage} />
+              <Route path="/events/:id" component={EventDetailedPage} />
               {/* to open same component on different routes */}
               <Route
                 key={key}
