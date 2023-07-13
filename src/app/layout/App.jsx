@@ -1,6 +1,6 @@
 import React from 'react';
 import EventDashboard from '../../features/events/eventDashboard/EventDashboard';
-import NavBar from '../../features/nav/NavBar';
+import NavBar from '../../features/nav/NavBar.jsx';
 import { Container } from 'semantic-ui-react';
 import { Route, useLocation } from 'react-router-dom';
 import HomePage from '../../features/home/HomePage';
