@@ -1,22 +1,23 @@
-import React from "react";
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Comment, Header, Segment } from "semantic-ui-react";
-import { formatDistance } from "date-fns";
-import { listenToEventChat } from "../eventActions";
+import React, { useEffect } from 'react';
+import { Segment, Comment, Header } from 'semantic-ui-react';
+import EventDetailedChatForm from './EventDetailedChatForm';
+import { useDispatch, useSelector } from 'react-redux';
 import {
-  firebaseObjectToArray,
   getEventChatRef,
-} from "../../../app/firestore/firebaseService";
-import EventDetailedChatForm from "./EventDetailedChatForm";
-import { Link } from "react-router-dom";
-import { CLEAR_COMMENTS } from "../eventConstants";
-import { useState } from "react";
-import { createDataTree } from "../../../app/common/util/util";
+  firebaseObjectToArray,
+} from '../../../app/firestore/firebaseService';
+import { listenToEventChat } from '../eventActions';
+import { Link } from 'react-router-dom';
+import { formatDistance } from 'date-fns';
+import { CLEAR_COMMENTS } from '../eventConstants';
+import { useState } from 'react';
+import { createDataTree } from '../../../app/common/util/util';
+import { onValue, off } from '@firebase/database';
 
 export default function EventDetailedChat({ eventId }) {
   const dispatch = useDispatch();
   const { comments } = useSelector((state) => state.event);
+  const { authenticated } = useSelector((state) => state.auth);
   const [showReplyForm, setShowReplyForm] = useState({
     open: false,
     commentId: null,
@@ -27,7 +28,7 @@ export default function EventDetailedChat({ eventId }) {
   }
 
   useEffect(() => {
-    getEventChatRef(eventId).on("value", (snapshot) => {
+    onValue(getEventChatRef(eventId), (snapshot) => {
       if (!snapshot.exists()) return;
       dispatch(
         listenToEventChat(firebaseObjectToArray(snapshot.val()).reverse())
@@ -35,22 +36,23 @@ export default function EventDetailedChat({ eventId }) {
     });
     return () => {
       dispatch({ type: CLEAR_COMMENTS });
-      getEventChatRef().off();
+      off(getEventChatRef());
     };
   }, [eventId, dispatch]);
 
   return (
     <>
       <Segment
-        textAlign="center"
-        attached="top"
+        textAlign='center'
+        attached='top'
         inverted
-        color="teal"
-        style={{ border: "none" }}
+        color='teal'
+        style={{ border: 'none' }}
       >
-        <Header>Chat about this event</Header>
+        <Header>{authenticated ? 'Chat about this event' : 'Sign in to view and comment'}</Header>
       </Segment>
 
+      {authenticated &&
       <Segment attached>
         <EventDetailedChatForm
           eventId={eventId}
@@ -58,18 +60,18 @@ export default function EventDetailedChat({ eventId }) {
           closeForm={setShowReplyForm}
         />
         <Comment.Group>
-          {createDataTree(comments)?.map((comment) => (
+          {createDataTree(comments).map((comment) => (
             <Comment key={comment.id}>
-              <Comment.Avatar src={comment.photoURL || "/assests/user.png"} />
+              <Comment.Avatar src={comment.photoURL || '/assets/user.png'} />
               <Comment.Content>
                 <Comment.Author as={Link} to={`/profile/${comment.uid}`}>
                   {comment.displayName}
                 </Comment.Author>
                 <Comment.Metadata>
-                  <div>{formatDistance(comment.date, new Date())} ago</div>
+                  <div>{formatDistance(comment.date, new Date())}</div>
                 </Comment.Metadata>
                 <Comment.Text>
-                  {comment.text.split("\n").map((text, i) => (
+                  {comment.text.split('\n').map((text, i) => (
                     <span key={i}>
                       {text}
                       <br />
@@ -79,10 +81,7 @@ export default function EventDetailedChat({ eventId }) {
                 <Comment.Actions>
                   <Comment.Action
                     onClick={() =>
-                      setShowReplyForm({
-                        open: true,
-                        commentId: comment.id,
-                      })
+                      setShowReplyForm({ open: true, commentId: comment.id })
                     }
                   >
                     Reply
@@ -90,9 +89,9 @@ export default function EventDetailedChat({ eventId }) {
                   {showReplyForm.open &&
                     showReplyForm.commentId === comment.id && (
                       <EventDetailedChatForm
+                        eventId={eventId}
                         parentId={comment.id}
                         closeForm={handleCloseReplyForm}
-                        eventId={eventId}
                       />
                     )}
                 </Comment.Actions>
@@ -102,19 +101,17 @@ export default function EventDetailedChat({ eventId }) {
                   {comment.childNodes.reverse().map((child) => (
                     <Comment key={child.id}>
                       <Comment.Avatar
-                        src={child.photoURL || "/assests/user.png"}
+                        src={child.photoURL || '/assets/user.png'}
                       />
                       <Comment.Content>
                         <Comment.Author as={Link} to={`/profile/${child.uid}`}>
                           {child.displayName}
                         </Comment.Author>
                         <Comment.Metadata>
-                          <div>
-                            {formatDistance(child.date, new Date())} ago
-                          </div>
+                          <div>{formatDistance(child.date, new Date())}</div>
                         </Comment.Metadata>
                         <Comment.Text>
-                          {child.text.split("\n").map((text, i) => (
+                          {child.text.split('\n').map((text, i) => (
                             <span key={i}>
                               {text}
                               <br />
@@ -135,9 +132,9 @@ export default function EventDetailedChat({ eventId }) {
                           {showReplyForm.open &&
                             showReplyForm.commentId === child.id && (
                               <EventDetailedChatForm
+                                eventId={eventId}
                                 parentId={child.parentId}
                                 closeForm={handleCloseReplyForm}
-                                eventId={eventId}
                               />
                             )}
                         </Comment.Actions>
@@ -149,7 +146,7 @@ export default function EventDetailedChat({ eventId }) {
             </Comment>
           ))}
         </Comment.Group>
-      </Segment>
+      </Segment>}
     </>
   );
 }

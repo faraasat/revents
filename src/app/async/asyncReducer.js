@@ -1,7 +1,7 @@
-const ASYNC_ACTION_START = "ASYNC_ACTION_START";
-const ASYNC_ACTION_FINISH = "ASYNC_ACTION_FINISH";
-const ASYNC_ACTION_ERROR = "ASYNC_ACTION_ERROR";
-export const APP_LOADED = "APP_LOADED";
+const ASYNC_ACTION_START = 'ASYNC_ACTION_START';
+const ASYNC_ACTION_FINISH = 'ASYNC_ACTION_FINISH';
+const ASYNC_ACTION_ERROR = 'ASYNC_ACTION_ERROR';
+export const APP_LOADED = 'APP_LOADED';
 
 export function asyncActionStart() {
   return {
@@ -16,7 +16,7 @@ export function asyncActionFinish() {
 }
 
 export function asyncActionError(error) {
-  console.log(error)
+  console.log(error);
   return {
     type: ASYNC_ACTION_ERROR,
     payload: error,

@@ -1,7 +1,7 @@
-import React, { useState } from "react";
-import { Button, Grid, Header, Tab } from "semantic-ui-react";
-import format from "date-fns/format";
-import ProfileForm from "./ProfileForm";
+import React, { useState } from 'react';
+import { Grid, Header, Button, Tab } from 'semantic-ui-react';
+import { format } from 'date-fns';
+import ProfileForm from './ProfileForm';
 
 export default function AboutTab({ profile, isCurrentUser }) {
   const [editMode, setEditMode] = useState(false);
@@ -10,18 +10,17 @@ export default function AboutTab({ profile, isCurrentUser }) {
       <Grid>
         <Grid.Column width={16}>
           <Header
-            floated="left"
-            icon="user"
+            floated='left'
+            icon='user'
             content={`About ${profile.displayName}`}
           />
-          {isCurrentUser && (
-            <Button
-              onClick={() => setEditMode(!editMode)}
-              floated="right"
-              basic
-              content={editMode ? "Cancel" : "Edit"}
-            />
-          )}
+          {isCurrentUser &&
+          <Button
+            onClick={() => setEditMode(!editMode)}
+            floated='right'
+            basic
+            content={editMode ? 'Cancel' : 'Edit'}
+          />}
         </Grid.Column>
         <Grid.Column width={16}>
           {editMode ? (
@@ -30,9 +29,9 @@ export default function AboutTab({ profile, isCurrentUser }) {
             <>
               <div style={{ marginBottom: 10 }}>
                 <strong>
-                  Member Since: {format(profile.createdt, "dd MMMM yyyy")}
-                  <div>{profile.description || null}</div>
+                  Member since: {format(profile.createdAt, 'dd MMM yyyy')}
                 </strong>
+                <div>{profile.description || null}</div>
               </div>
             </>
           )}

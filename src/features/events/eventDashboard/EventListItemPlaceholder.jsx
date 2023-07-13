@@ -1,6 +1,5 @@
 import React from 'react';
 import {Segment, Button, Placeholder} from 'semantic-ui-react';
-
 export default function EventListItemPlaceholder() {
     return (
         <Placeholder fluid >

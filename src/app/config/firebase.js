@@ -1,11 +1,7 @@
-import firebase from "firebase/app";
-import "firebase/firestore";
-import "firebase/database";
-import "firebase/auth";
-import "firebase/storage";
+import { initializeApp } from "firebase/app";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyC08hyclKd7aQPtZMKMoisp33LXAWHxsyA",
+  apiKey: process.env.REACT_APP_API_KEY,
   authDomain: "reventers.firebaseapp.com",
   databaseURL: "https://reventers.firebaseio.com",
   projectId: "reventers",
@@ -14,7 +10,4 @@ const firebaseConfig = {
   appId: "1:1058380117939:web:79892b8a5cee11fb913dc6",
 };
 
-firebase.initializeApp(firebaseConfig);
-firebase.firestore();
-
-export default firebase;
+export const app = initializeApp(firebaseConfig);

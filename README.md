@@ -1,68 +1,72 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Revents.
 
-## Available Scripts
+#### Immerse yourself in a captivating virtual journey of events.
 
-In the project directory, you can run:
+<br />
 
-### `yarn start`
+### ⚒ Project Demo:
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Experience the project in action by visiting our live demo: [Revents Website](https://revents-events.vercel.app)
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+---
 
-### `yarn test`
+### 🕵️‍♂️ Project Details:
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Revents is a dynamic events website built using React and Firebase. Discover and attend a diverse range of exciting events in your area. With personalized recommendations, seamless registration, and interactive event pages, Revents makes event exploration effortless. Connect with other attendees, track events, and make informed choices with user reviews.
 
-### `yarn build`
+---
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### ⚙ Dockerized Execution:
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+To run project using Docker run the following commands:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+For Development:
 
-### `yarn eject`
+```bash
+  docker build -f Dockerfile.dev -t <tag-name> .
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+  docker run -p 3000:3000 <tag-name>
+```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+For Production:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+```bash
+  docker build -f Dockerfile.prod -t <tag-name> .
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+  docker run -p 80:3000 <tag-name>
+```
 
-## Learn More
+---
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### 🤹‍♂️ Skills Utilized:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+![Visual Studio Code](https://img.shields.io/badge/-Visual%20Studio%20Code-333333?style=for-the-badge&logo=visual-studio-code)&nbsp;&nbsp;&nbsp;&nbsp;
+![HTML](https://img.shields.io/badge/-HTML-333333?style=for-the-badge&logo=Html5)&nbsp;&nbsp;&nbsp;&nbsp;
+![CSS](https://img.shields.io/badge/-CSS-333333?style=for-the-badge&logo=CSS3)&nbsp;&nbsp;&nbsp;&nbsp;
+![React](https://img.shields.io/badge/-React-333333?style=for-the-badge&logo=react)&nbsp;&nbsp;&nbsp;&nbsp;
+![Firebase](https://img.shields.io/badge/-Firebase-333333?style=for-the-badge&logo=firebase)&nbsp;&nbsp;&nbsp;&nbsp;
+![Docker](https://img.shields.io/badge/-Docker-333333?style=for-the-badge&logo=docker)&nbsp;&nbsp;&nbsp;&nbsp;
 
-### Code Splitting
+---
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+### ✔ Contributors:
 
-### Analyzing the Bundle Size
+We would like to acknowledge the following contributor for their valuable contributions to this project:
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+<p align="center">
+  <a href="https://github.com/faraasat">
+    <img src="https://img.shields.io/badge/GitHub-Farasat%20Ali-181727?style=for-the-badge&logo=github"/>
+  </a>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+</p>
 
-### Making a Progressive Web App
+---
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+### 📷 Project UI:
 
-### Advanced Configuration
+Take a glimpse into the captivating world of Natours Tour Static Website:
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+<p align="center">
+  <a href="http://revents-events.vercel.app/">
+    <img width='100%' src="screen-shot.png"/>
+  </a>
+</p>
